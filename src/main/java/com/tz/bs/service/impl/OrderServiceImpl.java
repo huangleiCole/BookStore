@@ -44,8 +44,8 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public PageBean<Order> queryByPage(User user, int now, int size,SearchPojo search) {
 		PageBean<Order> pageBean=new PageBean<>();
-		List<Order> orders=orderMapper.selectOrderPageByUserID(user.getUserid(), now, size,search);
-		pageBean.setPageNow(now);
+		List<Order> orders=orderMapper.selectOrderPageByUserID(user.getUserid(), (now-1)*size, size,search);
+		pageBean.setPageNow((now-1)*size);
 		pageBean.setPageSize(size);
 		pageBean.setPageDatas(orders);
 		pageBean.setTotalRecords(orderMapper.countOrderByUserIDAndSearch(user.getUserid(),search));

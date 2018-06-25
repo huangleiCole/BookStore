@@ -63,11 +63,6 @@
 						<li><a href="#" data-toggle="modal" data-target="#register">注册</a>
 						</li>
 					</c:if>
-
-
-
-
-
 					
 				</ul>
 				<div class="input-group col-md-3 pull-right"
@@ -303,7 +298,7 @@
 		}
 
 	}
-	function onPassword() {
+	/* function onPassword() {
 		if(regPassword.value.length<6 || regPassword.value.length>8){
 			rightPassword = false;
 			regPassword.value="";
@@ -324,9 +319,9 @@
 			regPasswordHint.innerHTML = "<b style='color:red'>密码不一致</b>";
 
 		}
-	}
+	} */
 	var rightName = false;
-	var rightPassword = false;
+	var rightPassword = true;
 	function checkName() {
 		//1.创建AJAX处理对象(兼容性)
 		var xmlhttp;

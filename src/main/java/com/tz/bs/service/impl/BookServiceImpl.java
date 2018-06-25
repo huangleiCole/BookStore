@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
 		PageBean<Book> pb=new PageBean<>();
 		pb.setPageNow(now);
 		pb.setPageSize(size);
-		pb.setPageDatas(bk.selectBooksbyCondition(now, size, cate,name));
+		pb.setPageDatas(bk.selectBooksbyCondition((now-1)*size, size, cate,name));
 		pb.setTotalRecords(bk.rowCount(cate));
 		return pb;
 	}

@@ -134,7 +134,6 @@
 	</div>
 
 
-	<%@ include file="/WEB-INF/page/comm/footer.jsp"%>
 	<script src="${base}/dist/js/jquery.min.js"></script>
 	<script src="${base}/js/wow.js"></script>
 	<script src="${base}/js/carousel.js" type="text/javascript"></script>

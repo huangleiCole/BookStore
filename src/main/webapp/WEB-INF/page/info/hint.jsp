@@ -21,7 +21,6 @@
 	</div>
 
 
-	<%@ include file="/WEB-INF/page/comm/footer.jsp"%>
 	<script src="${base}/dist/js/jquery.min.js"></script>
 	<script src="${base}/dist/js/bootstrap.min.js"></script>
 </body>

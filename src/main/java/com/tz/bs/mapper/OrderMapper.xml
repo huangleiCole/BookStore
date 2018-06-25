@@ -37,12 +37,9 @@
 		number(5,2) -->
 
 	<insert id="insertOrder" parameterType="order">
-		<selectKey order="BEFORE" resultType="Long" keyProperty="orderId">
-			select
-			bs_order_id.nextval from dual
-		</selectKey>
+		
 		INSERT into bs_order
-		VALUES(#{orderId},#{orderNum},#{createDate},#{orderStatus},#{user.userid},#{address.addressid},#{total})
+		VALUES(0,#{orderNum},#{createDate},#{orderStatus},#{user.userid},#{address.addressid},#{total})
 	</insert>
 
 	<update id="updateOrder" parameterType="order">
@@ -79,7 +76,8 @@
 
 
 	<select id="selectOrderPageByUserID" resultMap="orderUser">
-		select outer_.* from
+		<!-- oracel实现sql -->
+		<!-- select outer_.* from
 		(
 		select rownum rownum_,core_.* from
 		(
@@ -109,6 +107,39 @@
 		outer_ where
 		outer_.rownum_ &gt;(${pageNow}-1)*${pageSize}
 
+		<if test="search!=null">
+
+			<if test="search.isOrderByTime==1">
+				order by createDate asc
+			</if>
+			<if test="search.isOrderByTime==0">
+				order by createDate desc
+			</if>
+		</if> -->
+		
+		<!-- mysql实现sql -->
+		select o.* from bs_order o
+		<where>
+
+			<if test="search!=null">
+				<if test="search.orderNum!=null">
+					orderNum like '%'||#{search.orderNum}||'%'
+				</if>
+				<if test="search.beginDate!=null">
+					and createDate>=#{search.beginDate}
+				</if>
+				<if test="search.endDate!=null">
+					and createDate &lt;=#{search.endDate}
+				</if>
+				<if test="search.orderStatus!=null">
+					and orderStatus =#{search.orderStatus}
+				</if>
+			</if>
+
+			and ouser_id=#{uid}
+		</where>
+		limit #{pageNow} , #{pageSize}
+		
 		<if test="search!=null">
 
 			<if test="search.isOrderByTime==1">

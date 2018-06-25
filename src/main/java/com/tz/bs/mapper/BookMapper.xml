@@ -47,22 +47,37 @@
 	</select>
 
 	<select id="selectBooksbyCondition" resultMap="BookCate">
-		
-		select outer_.* from
+		<!-- oracle实现sql -->
+		<!-- select outer_.* from
 		(
 		select rownum rownum_,core_.* from
 		(
-		select * from bs_book <where>
-		<if test="cate!=null">
-		category_id =${cate}
-		</if>
-		<if test="str!=null">
-		and name like '%${str}%'
-		</if>
+		select * from
+		bs_book
+		<where>
+			<if test="cate!=null">
+				category_id =${cate}
+			</if>
+			<if test="str!=null">
+				and name like '%${str}%'
+			</if>
 		</where>
 		) core_ where rownum &lt; =${pageNow}*${pageSize}
-		) outer_ where outer_.rownum_ &gt;(${pageNow}-1)*${pageSize}
-	
+		) outer_ where
+		outer_.rownum_ &gt;(${pageNow}-1)*${pageSize} -->
+
+		<!-- mysql实现sql -->
+		select s.* from bs_book s
+		<where>
+			<if test="cate!=null">
+				category_id =${cate}
+			</if>
+			<if test="str!=null">
+				and name like '%${str}%'
+			</if>
+		</where>
+		limit #{pageNow} , #{pageSize}
+
 	</select>
 
 </mapper>

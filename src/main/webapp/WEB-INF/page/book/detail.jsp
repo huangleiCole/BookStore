@@ -162,7 +162,6 @@
 	</div>
 	
 	
-	<%@ include file="/WEB-INF/page/comm/footer.jsp"%>
 	
 	
 	

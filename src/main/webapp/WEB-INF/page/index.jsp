@@ -17,12 +17,11 @@
 	<jsp:include page="comm/header.jsp"><jsp:param  name="pIndex" value="1"/></jsp:include>
 
 	<!--图书内容部分 begin-->
-	<div class="container">
+	<div class="container" style="padding-left:0">
 		<c:forEach var="cate" items="${cates}">
 			<div id="datatable${cate.cateid}" class="container"></div>
 		</c:forEach>
 	</div>
-	<%@ include file="comm/footer.jsp"%>
 
 	<!--图书内容部分end-->
 
@@ -74,7 +73,7 @@
 											stringLength : {
 												min : 6,
 												max : 8,
-												message : '密码必须在6~20个字符之间'
+												message : '密码必须在6~8个字符之间'
 											},
 											different : {
 												field : 'username',

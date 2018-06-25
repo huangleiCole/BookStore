@@ -41,7 +41,7 @@
 <script type="text/javascript">
 function nextPage(page,type) {
 
-	if(page>"${pageBean.totalPages}"||page<1){
+	if(page>"${pageBean.totalPages}"||page<0){
 		return;
 	}
 	$("#datatable"+type).load(

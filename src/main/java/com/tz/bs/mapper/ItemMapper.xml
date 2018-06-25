@@ -27,21 +27,18 @@
 	order_id 		number(7)
 	 -->
 	<insert id="insertItem" parameterType="OrderItem">
-		<selectKey order="BEFORE" resultType="Long" keyProperty="item.itemId">
-			select
-			bs_orderitem_id.nextval from dual
-		</selectKey>
+		
 		INSERT into bs_orderItem
-		VALUES(#{item.itemId},#{item.book_isbn},#{item.book_name},#{item.book_author},#{item.unit_price},#{item.book_url},#{item.count},#{item.allPrice},#{orderid})
+		VALUES(0,#{item.book_isbn},#{item.book_name},#{item.book_author},#{item.unit_price},#{item.book_url},#{item.count},#{item.allPrice},#{orderid})
 	</insert>
 	
 	
 	<insert id="insertItemBitch" parameterType="java.util.List">
-		INSERT into bs_orderItem select bs_orderitem_id.nextval,a.*,bs_order_id.currval from(
-		<foreach collection="list" item="item" separator="union">
-			select #{item.book_isbn},#{item.book_name},#{item.book_author},#{item.unit_price},#{item.book_url},#{item.count},#{item.allPrice} from dual
+		INSERT into bs_orderItem values
+		<foreach collection="list" item="item" separator=",">
+			 (0, #{item.book_isbn},#{item.book_name},#{item.book_author},#{item.unit_price},#{item.book_url},#{item.count},#{item.allPrice},#{orderid})
 		</foreach>
-		) a
+		
 	</insert>
 
 

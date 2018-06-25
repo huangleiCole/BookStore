@@ -13,12 +13,9 @@
 	</select>
 
 	<insert id="insertUser" parameterType="user">
-		<selectKey order="BEFORE" resultType="Long" keyProperty="userid">
-			select
-			bs_user_id.nextval from dual
-		</selectKey>
+		
 		INSERT into bs_user
-		VALUES(#{userid},#{userName},#{password},#{phone},#{email},#{company})
+		VALUES(0,#{userName},#{password},#{phone},#{email},#{company})
 	</insert>
 	<update id="updateUser" parameterType="user">
 
